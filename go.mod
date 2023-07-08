@@ -1,3 +1,3 @@
-module hillfolk.org/go-hexagonal-architecture
+module github.com/hillfolk/go-hexagonal-architecture
 
 go 1.20
