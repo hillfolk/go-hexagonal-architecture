@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	product "hillfolk.org/go-hexagonal-architecture/internal/product/domain"
+	product "github.com/hillfolk/go-hexagonal-architecture/internal/product/domain"
 )
 
 func main() {
