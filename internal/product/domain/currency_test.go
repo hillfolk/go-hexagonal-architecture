@@ -12,9 +12,8 @@ func TestCurrency_String(t *testing.T) {
 		fields fields
 		want   string
 	}{
-		// TODO: Add test cases.
 		{
-			name: "test1",
+			name: "test currency to string",
 			fields: fields{
 				Amount:   100,
 				Currency: "USD",
