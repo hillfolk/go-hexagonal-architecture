@@ -1,22 +1,10 @@
 package main
 
-import (
-	"fmt"
-	product "github.com/hillfolk/go-hexagonal-architecture/internal/product/domain"
-)
+import "github.com/hillfolk/go-hexagonal-architecture/infra/web"
 
 func main() {
-
-	p := &product.Product{
-		ProductId:   "1",
-		ProductName: "Product 1",
-		ProductType: product.ProductTypeEquity,
-		Price: product.Currency{
-			Amount:   100,
-			Currency: "USD",
-		},
+	server := web.NewHttpServer()
+	if server.Run() != nil {
+		panic("Error running server")
 	}
-
-	fmt.Println("Hello, Hexagonal Architecture!" + p.ToString())
-
 }

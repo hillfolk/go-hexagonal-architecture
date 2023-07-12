@@ -1,7 +1,7 @@
 package dto
 
 type SendMoneyRequest struct {
-	FromAccountId int64 `json:"from_account_id"`
-	ToAccountId   int64 `json:"to_account_id"`
-	Amount        int64 `json:"amount"`
+	SourceAccountId int64 `json:"source_account_id" form:"source_account_id"`
+	TargetAccountId int64 `json:"target_account_id" form:"target_account_id"`
+	Amount          int64 `json:"amount" form:"amount"`
 }
