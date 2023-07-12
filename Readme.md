@@ -9,4 +9,12 @@
 
 ## How to implement Hexagonal Architecture?
 
-## Example Environment
+## Go Hexagonal Architecture
+
+The project is modeled after the Java-based hexagonal architecture, and will gradually evolve to a Golang-specific hexagonal architecture.
+
+
+## DTO(Data Transfer Object) vs Entity
+
+
+
