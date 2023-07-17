@@ -27,7 +27,7 @@ func (m Money) IsNegative() bool {
 func (m Money) IsPositive() bool {
 	return m.Amount >= 0
 }
-func (m Money) isGreaterThan(targetMoney Money) bool {
+func (m Money) IsGreaterThan(targetMoney Money) bool {
 	return m.Amount > targetMoney.Amount
 }
 

@@ -17,7 +17,7 @@ func withoutId(baselineBalance Money, window ActiveWindow) *Account {
 	}
 }
 
-func withId(id AccountId, baselineBalance Money, window ActiveWindow) *Account {
+func WithId(id AccountId, baselineBalance Money, window ActiveWindow) *Account {
 	return &Account{
 		AccountId:       id,
 		BaselineBalance: baselineBalance,
