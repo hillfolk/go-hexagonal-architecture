@@ -1,6 +1,7 @@
 package service
 
 import (
+	"github.com/hillfolk/go-hexagonal-architecture/internal/account/adapter/out/persistance"
 	"github.com/hillfolk/go-hexagonal-architecture/internal/account/application/port/in"
 	"github.com/hillfolk/go-hexagonal-architecture/internal/account/application/port/out"
 	"github.com/pkg/errors"
@@ -15,7 +16,13 @@ type SendMoneyService struct {
 }
 
 func NewSendMoneyService() in.SendMoneyUseCase {
-	return &SendMoneyService{}
+	adapter := persistance.NewAccountPersistenceAdapter()
+	return &SendMoneyService{
+		loadAccountPort:         adapter,
+		accountLockPort:         NewNoOpAccountLock(),
+		updateAccountStatePort:  adapter,
+		MoneyTransferProperties: NewDefaultMoneyTransferProperties(),
+	}
 }
 
 func (s *SendMoneyService) SendMoney(cmd in.SendMoneyCommand) error {

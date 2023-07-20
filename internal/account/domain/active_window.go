@@ -54,10 +54,6 @@ func (w *ActiveWindow) CalculateBalance(accountId AccountId) Money {
 	return Money{}.Add(depositBalance, withdrawalBalance)
 }
 
-func (w *ActiveWindow) CanWithdraw(amount Money) bool {
-	return false
-}
-
 func (w *ActiveWindow) AddActivity(activity *Activity) {
 	w.activities = append(w.activities, activity)
 }

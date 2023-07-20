@@ -50,3 +50,7 @@ func (m Money) Negate() Money {
 		Amount: -m.Amount,
 	}
 }
+
+func (m Money) IsPositiveOrZero() bool {
+	return m.Amount != 0
+}

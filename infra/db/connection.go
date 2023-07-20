@@ -12,6 +12,7 @@ func Connection() *gorm.DB {
 	if err != nil {
 		panic("failed to connect database")
 	}
+
 	return db
 }
 

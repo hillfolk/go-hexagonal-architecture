@@ -10,7 +10,7 @@ func NewActivityId(id int64) ActivityId {
 
 type Activity struct {
 	Id              ActivityId
-	OnwerAccountId  AccountId
+	OwnerAccountId  AccountId
 	SourceAccountId AccountId
 	TargetAccountId AccountId
 	Timestamp       time.Time
@@ -18,7 +18,7 @@ type Activity struct {
 }
 
 func NewActivity(
-	onwerAccountId AccountId,
+	ownerAccountId AccountId,
 	sourceAccountId AccountId,
 	targetAccountId AccountId,
 	timestamp time.Time,
@@ -26,7 +26,7 @@ func NewActivity(
 ) Activity {
 	return Activity{
 		Id:              nil,
-		OnwerAccountId:  onwerAccountId,
+		OwnerAccountId:  ownerAccountId,
 		SourceAccountId: sourceAccountId,
 		TargetAccountId: targetAccountId,
 		Timestamp:       time.Now(),

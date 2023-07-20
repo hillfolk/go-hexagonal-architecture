@@ -38,7 +38,7 @@ func (a *Account) CalculateBalance() Money {
 }
 
 func (a *Account) Withdraw(amount Money, targetAccountId AccountId) bool {
-	if !a.ActiveWindow.CanWithdraw(amount) {
+	if !a.mayWithdraw(amount) {
 		return false
 	}
 
@@ -52,6 +52,10 @@ func (a *Account) Withdraw(amount Money, targetAccountId AccountId) bool {
 
 	a.ActiveWindow.AddActivity(&withdrawl)
 	return true
+}
+
+func (a *Account) mayWithdraw(amount Money) bool {
+	return Money{}.Add(a.CalculateBalance(), amount.Negate()).IsPositiveOrZero()
 }
 
 func (a *Account) Deposit(amount Money, sourceAccountId AccountId) bool {
