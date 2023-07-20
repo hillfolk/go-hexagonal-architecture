@@ -8,6 +8,12 @@ type ActiveWindow struct {
 	activities []*Activity
 }
 
+func NewActivityWindow(activities []*Activity) *ActiveWindow {
+	return &ActiveWindow{
+		activities: activities,
+	}
+}
+
 func (w *ActiveWindow) GetStartTimestamp() time.Time {
 	startTimestamp := w.activities[0].Timestamp
 	for _, activity := range w.activities {

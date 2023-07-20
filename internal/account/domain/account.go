@@ -4,20 +4,28 @@ import "time"
 
 type AccountId int64
 
+func NewAccountId(id int64) AccountId {
+	return AccountId(id)
+}
+
 type Account struct {
 	AccountId       AccountId
 	BaselineBalance Money
-	ActiveWindow    ActiveWindow
+	ActiveWindow    *ActiveWindow
 }
 
-func withoutId(baselineBalance Money, window ActiveWindow) *Account {
+func withoutId(baselineBalance Money, window *ActiveWindow) *Account {
 	return &Account{
 		BaselineBalance: baselineBalance,
 		ActiveWindow:    window,
 	}
 }
 
-func WithId(id AccountId, baselineBalance Money, window ActiveWindow) *Account {
+func (a *Account) GetAccountId() AccountId {
+	return a.AccountId
+}
+
+func WithId(id AccountId, baselineBalance Money, window *ActiveWindow) *Account {
 	return &Account{
 		AccountId:       id,
 		BaselineBalance: baselineBalance,
@@ -56,4 +64,8 @@ func (a *Account) Deposit(amount Money, sourceAccountId AccountId) bool {
 	)
 	a.ActiveWindow.AddActivity(&deposit)
 	return true
+}
+
+func (a *Account) GetActivityWindow() *ActiveWindow {
+	return a.ActiveWindow
 }

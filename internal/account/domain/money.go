@@ -4,6 +4,12 @@ type Money struct {
 	Amount int64
 }
 
+func NewMoney(amount int64) Money {
+	return Money{
+		Amount: amount,
+	}
+}
+
 func (Money) Add(a Money, b Money) Money {
 	return Money{
 		Amount: a.Amount + b.Amount,

@@ -8,7 +8,7 @@ import (
 )
 
 func NewRouter() *gin.Engine {
-	router := gin.New()
+	router := gin.Default()
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 	store := cookie.NewStore([]byte("secret"))

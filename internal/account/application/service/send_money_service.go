@@ -40,15 +40,25 @@ func (s *SendMoneyService) SendMoney(cmd in.SendMoneyCommand) error {
 	}
 	s.accountLockPort.LockAccount(sourceAccountId)
 	if !sourceAccount.Withdraw(cmd.Amount, targetAccountId) {
-		s.accountLockPort.ReleaseAccount(sourceAccountId)
+		if err := s.accountLockPort.ReleaseAccount(sourceAccountId); err != nil {
+			return errors.Wrap(err, "error while releasing account to source account")
+		}
 		return nil
 	}
 
-	s.updateAccountStatePort.UpdateActivities(sourceAccount)
-	s.updateAccountStatePort.UpdateActivities(targetAccount)
+	if err := s.updateAccountStatePort.UpdateActivities(sourceAccount); err != nil {
+		return errors.Wrap(err, "error while updating source account activities")
+	}
+	if err := s.updateAccountStatePort.UpdateActivities(targetAccount); err != nil {
+		return errors.Wrap(err, "error while updating target account activities")
+	}
 
-	s.accountLockPort.ReleaseAccount(sourceAccountId)
-	s.accountLockPort.ReleaseAccount(targetAccountId)
+	if err := s.accountLockPort.ReleaseAccount(sourceAccountId); err != nil {
+		return errors.Wrap(err, "error while releasing account to source account")
+	}
+	if err := s.accountLockPort.ReleaseAccount(targetAccountId); err != nil {
+		return errors.Wrap(err, "error while releasing account to target account")
+	}
 
 	return nil
 }

@@ -3,6 +3,11 @@ package domain
 import "time"
 
 type ActivityId *int64
+
+func NewActivityId(id int64) ActivityId {
+	return &id
+}
+
 type Activity struct {
 	Id              ActivityId
 	OnwerAccountId  AccountId
