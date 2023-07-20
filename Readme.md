@@ -14,7 +14,15 @@
 The project is modeled after the Java-based hexagonal architecture, and will gradually evolve to a Golang-specific hexagonal architecture.
 
 
-## DTO(Data Transfer Object) vs Entity
+## TODO List
+- [ ] Add input verification functionality 
+- [ ] Add dependency injection (DI)
+- [ ] Add unit tests
+- [ ] Add integration tests
+
+## References
+- [Hexagonal Architecture](https://en.wikipedia.org/wiki/Hexagonal_architecture_(software))
+- https://www.oreilly.com/library/view/get-your-hands/9781839211966
 
 
 
