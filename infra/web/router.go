@@ -23,7 +23,9 @@ func NewRouter() *gin.Engine {
 		account := v1.Group("/accounts")
 		{
 			sendMoneyController := web.NewSendMoneyController()
+			getAccountBalanceController := web.NewGetAccountBalanceController()
 			account.POST("/send", sendMoneyController.SendMoney)
+			account.GET("/:accountId/balance", getAccountBalanceController.GetAccountBalance)
 		}
 	}
 	return router

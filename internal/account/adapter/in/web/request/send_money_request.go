@@ -1,4 +1,4 @@
-package dto
+package request
 
 type SendMoneyRequest struct {
 	SourceAccountId int64 `json:"source_account_id" form:"source_account_id"`
