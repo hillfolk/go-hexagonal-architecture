@@ -20,8 +20,8 @@ func NewSendMoneyController() *SendMoneyController {
 }
 
 func (a *SendMoneyController) SendMoney(ctx *gin.Context) {
-	var request request.SendMoneyRequest
-	if err := ctx.Bind(&request); err != nil {
+	var sendMoneyRequest request.SendMoneyRequest
+	if err := ctx.Bind(&sendMoneyRequest); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
 		})
@@ -30,10 +30,10 @@ func (a *SendMoneyController) SendMoney(ctx *gin.Context) {
 
 	if err := a.sendMoneyUseCase.SendMoney(
 		in.SendMoneyCommand{
-			SourceAccountId: account.AccountId(request.SourceAccountId),
-			TargetAccountId: account.AccountId(request.TargetAccountId),
+			SourceAccountId: account.AccountId(sendMoneyRequest.SourceAccountId),
+			TargetAccountId: account.AccountId(sendMoneyRequest.TargetAccountId),
 			Amount: account.Money{
-				Amount: request.Amount,
+				Amount: sendMoneyRequest.Amount,
 			},
 		},
 	); err != nil {

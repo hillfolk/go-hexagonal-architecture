@@ -4,12 +4,15 @@ import "time"
 
 type AccountId int64
 
+type UserId string
+
 func NewAccountId(id int64) AccountId {
 	return AccountId(id)
 }
 
 type Account struct {
 	AccountId       AccountId
+	UserId          UserId
 	BaselineBalance Money
 	ActiveWindow    *ActiveWindow
 }

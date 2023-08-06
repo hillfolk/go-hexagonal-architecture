@@ -4,7 +4,8 @@ import (
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
-	"github.com/hillfolk/go-hexagonal-architecture/internal/account/adapter/in/web"
+	accountcontroller "github.com/hillfolk/go-hexagonal-architecture/internal/account/adapter/in/web"
+	usercontroller "github.com/hillfolk/go-hexagonal-architecture/internal/user/adapter/in/web"
 )
 
 func NewRouter() *gin.Engine {
@@ -22,11 +23,19 @@ func NewRouter() *gin.Engine {
 
 		account := v1.Group("/accounts")
 		{
-			sendMoneyController := web.NewSendMoneyController()
-			getAccountBalanceController := web.NewGetAccountBalanceController()
+			sendMoneyController := accountcontroller.NewSendMoneyController()
+			getAccountBalanceController := accountcontroller.NewGetAccountBalanceController()
 			account.POST("/send", sendMoneyController.SendMoney)
 			account.GET("/:accountId/balance", getAccountBalanceController.GetAccountBalance)
 		}
+		user := v1.Group("/users")
+		signUpController := usercontroller.NewSignUpController()
+		signInController := usercontroller.NewSignInController()
+		{
+			user.POST("/sign-up", signUpController.SignUp)
+			user.POST("/sign-in", signInController.SignIn)
+		}
+
 	}
 	return router
 

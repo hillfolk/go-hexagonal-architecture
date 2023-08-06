@@ -181,3 +181,12 @@ Temporary Items
 
 /gorm.db
 /go.sum
+/.idea/.gitignore
+/.idea/dataSources.xml
+/.idea/git_toolbox_prj.xml
+/.idea/go-hexagonal-architecture.iml
+/.idea/kubernetes-settings.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/sonarlint.xml
+/.idea/vcs.xml

@@ -2,11 +2,11 @@ package web
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/hillfolk/go-hexagonal-architecture/internal/account/adapter/in/web/request"
 	"github.com/hillfolk/go-hexagonal-architecture/internal/account/application/port/in"
 	"github.com/hillfolk/go-hexagonal-architecture/internal/account/application/service"
 	"github.com/hillfolk/go-hexagonal-architecture/internal/account/domain"
 	"net/http"
+	"strconv"
 )
 
 type GetAccountBalanceController struct {
@@ -21,14 +21,15 @@ func NewGetAccountBalanceController() *GetAccountBalanceController {
 }
 
 func (a *GetAccountBalanceController) GetAccountBalance(ctx *gin.Context) {
-	var accountBalanceRequest request.GetAccountBalanceRequest
-	if err := ctx.Bind(&accountBalanceRequest); err != nil {
+	id, _ := ctx.Params.Get("accountId")
+	accountId, err := strconv.ParseInt(id, 10, 64)
+	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
-			"error": err.Error(),
+			"error": "accountId must be a number",
 		})
 	}
 
-	money, err := a.service.GetAccountBalance(domain.NewAccountId(accountBalanceRequest.AccountId))
+	money, err := a.service.GetAccountBalance(domain.NewAccountId(accountId))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
