@@ -15,10 +15,14 @@ The project is modeled after the Java-based hexagonal architecture, and will gra
 
 
 ## TODO List
-- [ ] Add input verification functionality 
+- [ ] Add input verification functionality
+- [ ] Add db connection
+- [ ] Add transaction management
 - [ ] Add dependency injection (DI)
 - [ ] Add unit tests
 - [ ] Add integration tests
+- [ ] Add logging
+- [ ] Add metrics
 
 ## References
 - [Hexagonal Architecture](https://en.wikipedia.org/wiki/Hexagonal_architecture_(software))
