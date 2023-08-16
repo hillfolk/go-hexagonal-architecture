@@ -2,6 +2,7 @@ package web
 
 import (
 	gin "github.com/gin-gonic/gin"
+	"github.com/hillfolk/go-hexagonal-architecture/infra/api"
 	"github.com/hillfolk/go-hexagonal-architecture/internal/account/adapter/in/web/request"
 	"github.com/hillfolk/go-hexagonal-architecture/internal/account/application/port/in"
 	"github.com/hillfolk/go-hexagonal-architecture/internal/account/application/service"
@@ -22,9 +23,8 @@ func NewSendMoneyController() *SendMoneyController {
 func (a *SendMoneyController) SendMoney(ctx *gin.Context) {
 	var sendMoneyRequest request.SendMoneyRequest
 	if err := ctx.Bind(&sendMoneyRequest); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{
-			"error": err.Error(),
-		})
+		api.RenderFail(ctx, http.StatusBadRequest, err)
+		return
 	}
 	// TODO: add validation
 
@@ -37,11 +37,7 @@ func (a *SendMoneyController) SendMoney(ctx *gin.Context) {
 			},
 		},
 	); err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{
-			"error": err.Error(),
-		})
+		api.RenderFail(ctx, http.StatusInternalServerError, err)
 	}
-	ctx.JSON(http.StatusOK, gin.H{
-		"status": "ok",
-	})
+	api.RenderSucc(ctx, http.StatusOK, "success")
 }

@@ -4,7 +4,6 @@
 
 ## What is Hexagonal Architecture?
 
-
 ## Why Hexagonal Architecture?
 
 ## How to implement Hexagonal Architecture?
@@ -15,8 +14,8 @@ The project is modeled after the Java-based hexagonal architecture, and will gra
 
 
 ## TODO List
-- [ ] Add input verification functionality
-- [ ] Add db connection
+- [+] Add input verification functionality
+- [+] Add db connection
 - [ ] Add transaction management
 - [ ] Add dependency injection (DI)
 - [ ] Add unit tests
